@@ -618,28 +618,7 @@ Ext.define('Proxmox.Utils', {
                     Ext.Msg.alert(gettext('Error'), response.htmlStatus);
                 },
                 success: function (response, opts) {
-                    let res = response.result;
-                    if (
-                        res === null ||
-                        res === undefined ||
-                        !res ||
-                        res.data.status.toLowerCase() !== 'active'
-                    ) {
-                        Ext.Msg.show({
-                            title: gettext('No valid subscription'),
-                            icon: Ext.Msg.WARNING,
-                            message: Proxmox.Utils.getNoSubKeyHtml(res.data.url),
-                            buttons: Ext.Msg.OK,
-                            callback: function (btn) {
-                                if (btn !== 'ok') {
-                                    return;
-                                }
-                                orig_cmd();
-                            },
-                        });
-                    } else {
-                        orig_cmd();
-                    }
+                    orig_cmd();
                 },
             });
         },
